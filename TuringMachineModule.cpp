@@ -3,7 +3,7 @@
 #include "MCP_DAC.h" // reference library for MCP4921 DAC IC
 MCP4921 DAC;       // create DAC object of type MCP4921 
 
-// This started off as an Adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino" 
+// This is an Adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino" 
 // which I've modified to take an external clock signal (for speed control) 
 // and to produce a voltage via an MCP4921 DAC by mapping current 8-bit value in shift registers (SN74LS14N shift register IC)
 // to 12-bit value passed to DAC and interpolated to millivolt increments 
@@ -59,12 +59,11 @@ void setup() {
  pinMode(LATCH_PIN, OUTPUT);
  pinMode(CLK_PIN, OUTPUT);
 
-
  
 // DAC chip select (CS) signal comes from Arduino. Set Arduino SS out to pin D10
  DAC.begin(10);     // Initialize on Pin 10 
 
- // To make generated number more 'random', I will seed it with noise generated an unassigned, floating analog pin. 
+ // To make generated number more 'random', I seed it with noise generated an unassigned, floating analog pin. 
  randomSeed(analogRead(A5));
 
  attachInterrupt(CLK_PIN_IN, externalClkReceived, RISING);
@@ -95,7 +94,7 @@ void changeVoltageBits() {
    digitalWrite(LATCH_PIN, LOW); 
    shiftOut(SER_DATA_PIN, CLK_PIN, currentValue); // Custom shiftBits to override built-in shiftBits() 
    changeVoltage(currentValue);
-   digitalWrite(LATCH_PIN, HIGH);  // Latch HIGH to SHOW the pattern (e.g. on the LEDs)   
+   digitalWrite(LATCH_PIN, HIGH);  // Latch HIGHT to SHOW the pattern (e.g. on the LEDs)   
 }
 
 
@@ -184,3 +183,66 @@ int getDataPinState(){
 
 
 
+
+// PREVIOUS TODO: REMOVE
+void shiftOut(int DATA_pin, int CLOCK_pin, byte DATA_out) {
+  // Shift 8 bits out MSB first, on clock's rising edge
+  // Had to add 10K PullDown resistor to clock input to keep LEDs from random flickers when clock cable is unplugged 
+
+ 
+ // Set CLOCK and DATA pins to OUTput
+  pinMode(CLOCK_pin, OUTPUT);
+  pinMode(DATA_pin, OUTPUT);
+
+  //clear everything out just in case to prepare shift register for bit shifting
+  digitalWrite(DATA_pin, 0);  // DATA = 0 = LOW 
+  digitalWrite(CLOCK_pin, 0); // CLOCK = 0 = LOW 
+
+  // Check and set e/ digit/bit space 1-by-1 and toggle it ON or OFF 
+  for (int i=7; i>=0; i--)  {
+    digitalWrite(CLOCK_pin, 0);// start [INTERNAL]CLOCK = 0 = LOW ..again (for e/iteration)
+
+    // B/c they must ALL be set ONE-BY-ONE a bitmask is performed on e/ iteration. 
+    // Check bitmask result for this iteration (bit location)
+    if ( DATA_out & (1<<i) ) {  // any resulting # that is NOT 0 is TRUE
+      /*
+      Serial.print("[");
+      Serial.print(i);
+      Serial.print("]");
+      Serial.print("\t\t ++++++++++++++++++-> ");
+      Serial.println(DATA_out & (1<<i)); //128 64 _ 16 _ 4 _ _   I.e.  1000 000   0100 0000    0001 0000     0000 0100
+      Serial.print("\n");
+      */      
+      dataPinState= 1; // 1 = ON = HIGH
+    }
+    else {  // IF bitmask result is 0 theb ---> FALSE 
+      /*
+      Serial.print("[");
+      Serial.print(i);
+      Serial.print("]");
+      Serial.print("\t --------------------> ");
+      Serial.println(DATA_out & (1<<i)); //128 64 _ 16 _ 4 _ _   I.e.  1000 000   0100 0000    0001 0000     0000 0100
+      Serial.print("\n");`
+      */      
+      dataPinState= 0; // 0 = OFF = LOW 
+    }
+
+    // Then set DATA_pin HIGH(1) or LOW(0) depnding on resulting pinState 
+    digitalWrite(DATA_pin, dataPinState); // DATA = HIGH(1) OR LOW(0)  --> TO pin D4 Ard 
+
+    //Register shifts bits on UPstroke (RISING edge) of [INTERNAL]CLOCK_pin(D6)
+    // NOTE: EVERY time the clock goes from low to HIGH (EOR)ALL values currently stored in output registers are shifted over ONE position 
+    // The last one is discarded or ouput on the !Q_h pin
+    // SIMULTANEOUSLY, the value currently on the DATA input is shifted into the FIRST position (Q_a)
+    // Do this 8 TIMES to shift out all present values and shift IN values.
+    // LATCH is shifted HIGH at the end to make the new values appear on the outputs (LEDs).  
+    digitalWrite(CLOCK_pin, 1); // CLOCK = 1 = HIGH TO SHIFT BITS (adding what is on DATA pin(state) ^ above )
+
+    //ZERO the DATA_pin AFTER shift to prevent bleed through
+    digitalWrite(DATA_pin, 0); //DATA = 0 = LOW 
+  } //*********** close FOR-loop *********************************
+
+
+  //STOP shifting
+  digitalWrite(CLOCK_pin, 0); // CLOCK BACK TO 0 to STOP Shifting 
+}
