@@ -3,7 +3,7 @@
 #include "MCP_DAC.h" // reference library for MCP4921 DAC IC
 MCP4921 DAC;       // create DAC object of type MCP4921 
 
-// This is an Adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino" 
+// This started off as an Adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino" 
 // which I've modified to take an external clock signal (for speed control) 
 // and to produce a voltage via an MCP4921 DAC by mapping current 8-bit value in shift registers (SN74LS14N shift register IC)
 // to 12-bit value passed to DAC and interpolated to millivolt increments 
@@ -59,11 +59,12 @@ void setup() {
  pinMode(LATCH_PIN, OUTPUT);
  pinMode(CLK_PIN, OUTPUT);
 
+
  
 // DAC chip select (CS) signal comes from Arduino. Set Arduino SS out to pin D10
  DAC.begin(10);     // Initialize on Pin 10 
 
- // To make generated number more 'random', I seed it with noise generated an unassigned, floating analog pin. 
+ // To make generated number more 'random', I will seed it with noise generated an unassigned, floating analog pin. 
  randomSeed(analogRead(A5));
 
  attachInterrupt(CLK_PIN_IN, externalClkReceived, RISING);
@@ -94,7 +95,7 @@ void changeVoltageBits() {
    digitalWrite(LATCH_PIN, LOW); 
    shiftOut(SER_DATA_PIN, CLK_PIN, currentValue); // Custom shiftBits to override built-in shiftBits() 
    changeVoltage(currentValue);
-   digitalWrite(LATCH_PIN, HIGH);  // Latch HIGHT to SHOW the pattern (e.g. on the LEDs)   
+   digitalWrite(LATCH_PIN, HIGH);  // Latch HIGH to SHOW the pattern (e.g. on the LEDs)   
 }
 
 
