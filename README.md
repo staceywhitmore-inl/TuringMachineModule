@@ -34,6 +34,8 @@ Materials Used:
 * LEDs
 * Momentary Tactile Push Buttons (X2)
 * 10K Single-turn Trim Pot
+* 10K Pull-down Resistors. 1/4W 5% (X3)
+* OpAmp (Optional for buffered output)
 * Breadboard and Jumper Wires
 
 ## Resources
