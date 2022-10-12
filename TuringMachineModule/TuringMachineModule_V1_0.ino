@@ -20,7 +20,7 @@ MCP4921 DAC;         // create DAC object of type MCP4921
 multiply the 8-bit # the LEDs represent by 0.033 to get the volts/octave output
 All LEDs lit would add up to ~ 8.4 volts; however, because the MCP4921 is only rated for a maximum 5v VCC (which it uses as a reference voltage) 
 the max voltage output is just under 5VDC. (I later plan to transition this project from being more software-oriented to more of a hardware implementation 
-(e.g., more similar to the DIY kits mentioned in the video above) which will use a DAC0800L CN chip cable of reaching the upper octaves [but those higher octaves are shrill so this should do for now.])
+(e.g., more similar to the DIY kits mentioned in the video above) which will use a DAC0800L CN chip cable of reaching the upper octaves [but those higher octaves are shrill so this shoudl do for now.])
 I will add a voltage divider circuit (with an adjustable trim pot) at the DAC's output to further attenuate the voltage and limit the output to lower notes if desired.
 
 Because I do have the needed DPDT, 3-way switch for manually assigning 1 or 0 bits to the sequence, I've created a software implementation that utizies two momentary tactile buttons
@@ -65,7 +65,7 @@ void setup()
   pinMode(SER_DATA_PIN, OUTPUT); // 4
   pinMode(LATCH_PIN, OUTPUT);    // 5
   pinMode(CLK_PIN, OUTPUT);      // 6
-  //Button inputs
+
   pinMode(OUT_BIT_READ_PIN, INPUT); // 12
   pinMode(BTN_HIGH, INPUT);         // 7
   pinMode(BTN_LOW, INPUT);          // 8
@@ -86,11 +86,10 @@ void setup()
   randomSeed(analogRead(0)); // Noise on analog pin A0 will cause randomSeed()to generate different seed numbers each time the program is run to make it 'more' "random".
 }
 
-// TODO: REMOVE WHEN NO LONGER NEEDED
 void loop()
 {
-  //Serial.print("Current v/oct binary value is : ");
-  //Serial.println(currentBitIndex);
+  // Serial.print("Current v/oct binary value is : ");
+  // Serial.println(currentBitIndex);
 }
 
 void shiftBits(int DATA_pin, int CLOCK_pin, byte DATA_out)
@@ -98,7 +97,7 @@ void shiftBits(int DATA_pin, int CLOCK_pin, byte DATA_out)
   // Shift 8 bits out MSB first, on clock's rising edge
   // Had to add 10K PullDown resistor to clock input to keep LEDs from random flickers when clock cable is unplugged
 
-  currentByte = DATA_out; // N
+  currentByte = DATA_out;
 
   rndPotValue = analogRead(RND_POT); // Pin A1 (value will be 0 - 1023)
   // nndPotValue = map(); // Would map 1023 to 255 but it seems to already by mapped to 255 (8-bit) by default (rather than 1023 (10-bit)
@@ -170,6 +169,7 @@ void externalClkReceived()
 }
 
 // Called once to setup initial state from Setup()
+// TODO: Simplify
 void firstShift(int DATA_pin, int CLOCK_pin, byte DATA_out)
 {
   // Shift 8 bits out MSB first, on clock's rising edge.
@@ -220,13 +220,6 @@ outoutVoltage() results (recorded by serial outout and voltmeter[while using MCP
 
 /*
 References:
-MCP4xxx family DAC info:
-https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available
-https://github.com/RobTillaart/MCP_DAC
-
-Turing Machine Module DIY kit and resources
-https://www.thonk.co.uk/shop/turingmkii/
-
-Turing Machine [Module] Explained video:
-https://www.youtube.com/watch?v=va2XAdFtmeU&feature=emb_imp_woyt&themeRefresh=1
+MCP4xxx family DAC info
+(from https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available.    )
 */
