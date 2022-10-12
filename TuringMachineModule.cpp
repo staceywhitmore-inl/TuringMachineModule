@@ -20,7 +20,7 @@ MCP4921 DAC;         // create DAC object of type MCP4921
 multiply the 8-bit # the LEDs represent by 0.033 to get the volts/octave output
 All LEDs lit would add up to ~ 8.4 volts; however, because the MCP4921 is only rated for a maximum 5v VCC (which it uses as a reference voltage) 
 the max voltage output is just under 5VDC. (I later plan to transition this project from being more software-oriented to more of a hardware implementation 
-(e.g., more similar to the DIY kits mentioned in the video above) which will use a DAC0800L CN chip cable of reaching the upper octaves [but those higher octaves are shrill so this shoudl do for now.])
+(e.g., more similar to the DIY kits mentioned in the video above) which will use a DAC0800L CN chip cable of reaching the upper octaves [but those higher octaves are shrill so this should do for now.])
 I will add a voltage divider circuit (with an adjustable trim pot) at the DAC's output to further attenuate the voltage and limit the output to lower notes if desired.
 
 Because I do have the needed DPDT, 3-way switch for manually assigning 1 or 0 bits to the sequence, I've created a software implementation that utizies two momentary tactile buttons
