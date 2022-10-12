@@ -222,6 +222,7 @@ outoutVoltage() results (recorded by serial outout and voltmeter[while using MCP
 References:
 MCP4xxx family DAC info:
 https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available
+https://github.com/RobTillaart/MCP_DAC
 
 Turing Machine Module DIY kit and resources
 https://www.thonk.co.uk/shop/turingmkii/
