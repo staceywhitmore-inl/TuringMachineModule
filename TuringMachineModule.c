@@ -96,7 +96,7 @@ void shiftBits(int DATA_pin, int CLOCK_pin, byte DATA_out)
   // Shift 8 bits out MSB first, on clock's rising edge
   // Had to add 10K PullDown resistor to clock input to keep LEDs from random flickers when clock cable is unplugged
 
-  currentByte = DATA_out; // N
+  currentByte = DATA_out; 
 
   rndPotValue = analogRead(RND_POT); // Pin A1 (value will be 0 - 1023)
   // nndPotValue = map(); // Would map 1023 to 255 but it seems to already by mapped to 255 (8-bit) by default (rather than 1023 (10-bit)

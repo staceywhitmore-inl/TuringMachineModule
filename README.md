@@ -27,6 +27,14 @@ I will add a voltage divider circuit (with an adjustable trim pot) at the DAC's 
 Because I do have the needed DPDT, 3-way switch for manually assigning 1 or 0 bits to the sequence, I've created a software implementation that utizies two momentary tactile buttons
 for this purpose and 10K trim pot to adjust the probability of 'randomly' inverting the carried bit. 
 
+Materials Used:
+* Arduino &#174; Uno
+* SN74LS14N Shift Register 
+* MCP4921 DAC
+* LEDs
+* Momentary Tactile Push Buttons (X2)
+* 10K Single-turn Trim Pot
+* Breadboard and Jumper Wires
 
 ## Resources
 MCP4xxx family DAC info:
