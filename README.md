@@ -3,7 +3,7 @@
 An embedded software implementation of a Turing Machine module for a Eurorack system  using an Arduino Uno, a shift register and a DAC. 
 [Here is an example of an all-hardware based Turing Machine module made by Music Thing Modular](https://www.thonk.co.uk/shop/turingmkii/)
 
-[![... and a video explaing how they work](https://www.youtube.com/watch?v=va2XAdFtmeU/default.jpg)](https://www.youtube.com/watch?v=va2XAdFtmeU)
+[![... and a video explaing how they work](https://github.com/staceywhitmore-inl/TuringMachineModule/blob/master/media/TuringMachineExplainedVideo.PNG)](https://www.youtube.com/watch?v=va2XAdFtmeU)
 
 
 This started out as an adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino"
