@@ -25,8 +25,6 @@ I will add a voltage divider circuit (with an adjustable trim pot) at the DAC's 
 
 Because I do have the needed DPDT, 3-way switch for manually assigning 1 or 0 bits to the sequence, I've created a software implementation that utizies two momentary tactile buttons
 for this purpose and 10K trim pot to adjust the probability of 'randomly' inverting the carried bit. 
-
-
 */
 
 // Arduino pins   | DAC pins
@@ -222,6 +220,12 @@ outoutVoltage() results (recorded by serial outout and voltmeter[while using MCP
 
 /*
 References:
-MCP4xxx family DAC info
-(from https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available.    )
+MCP4xxx family DAC info:
+https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available
+
+Turing Machine Module DIY kit and resources
+https://www.thonk.co.uk/shop/turingmkii/
+
+Turing Machine [Module] Explained video:
+https://www.youtube.com/watch?v=va2XAdFtmeU&feature=emb_imp_woyt&themeRefresh=1
 */
