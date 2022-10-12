@@ -1,10 +1,7 @@
-# Turing Machine Module
+# DIY Turing Machine Module 
 
-An embedded software implementation of a Turing Machine module for a Eurorack system  using an Arduino Uno, a shift register and a DAC. 
+An embedded software implementation of a Turing Machine Module for a Eurorack system using an Arduino Uno, a SN74LS14N shift register and an MCP4921 DAC. 
 [Here is an example of an all-hardware based Turing Machine module made by Music Thing Modular](https://www.thonk.co.uk/shop/turingmkii/)
-
-[![... and a video explaing how they work](https://github.com/staceywhitmore-inl/TuringMachineModule/blob/master/media/TuringMachineExplainedVideo.PNG)](https://www.youtube.com/watch?v=va2XAdFtmeU)
-
 
 This started out as an adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino"
 and then I thought to myself, "I could make musical sequence with this.."
@@ -12,8 +9,10 @@ It turns out somebody alread has. What I've built here is know by modular synthe
 A better explanation of what they do and how they work can be found here: 
 https://www.thonk.co.uk/shop/turingmkii/
 
+[![a video explaing how they work](https://github.com/staceywhitmore-inl/TuringMachineModule/blob/master/media/TuringMachineExplainedVideo.PNG)](https://www.youtube.com/watch?v=va2XAdFtmeU)
+
 I thought to take this rite of passage myself and I've modified the aforementioned LightRider LED sketch to take an external clock signal (for speed control)
-and to produce a voltage via an MCP4921 DAC by mapping current 8-bit value in shift registers (SN74LS14N shift register IC)
+and to produce a voltage via an MCP4921 DAC by mapping current 8-bit value in shift registers. 
 to 12-bit value passed to DAC and interpolated to millivolt increments.
 This volts-per-octave signal can then be fed to a Voltage controlled  oscillator to generate notes.
 Of course, they are random and not musical (unless ran through a quantizer to assign them to the closest note in a given musical scale. [This will be a separate project])
@@ -29,12 +28,15 @@ Because I do have the needed DPDT, 3-way switch for manually assigning 1 or 0 bi
 for this purpose and 10K trim pot to adjust the probability of 'randomly' inverting the carried bit. 
 
 
-## RESOURCES
+## Resources
 MCP4xxx family DAC info:
 from https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available.  
 
-Turing Machine Module DIY kit and resources
+Music Thing Modular Turing Machine Module DIY kit and resources:
 https://www.thonk.co.uk/shop/turingmkii/
 
 Turing Machine [Module] Explained video:
 https://www.youtube.com/watch?v=va2XAdFtmeU&feature=emb_imp_woyt&themeRefresh=1
+
+Exploring Arduino by Jeremy Blum:
+https://www.exploringarduino.com/
