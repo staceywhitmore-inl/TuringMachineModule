@@ -42,9 +42,6 @@ Materials Used:
 MCP4xxx family DAC info:
 from https://cyberblogspot.com/how-to-use-mcp4921-dac-with-arduino/#:~:text=The%20MCP4921%20is%20a%20Digital,the%20MCP4922%20is%20also%20available.  
 
-Music Thing Modular Turing Machine Module DIY kit and resources:
-https://www.thonk.co.uk/shop/turingmkii/
-
 Turing Machine [Module] Explained video:
 https://www.youtube.com/watch?v=va2XAdFtmeU&feature=emb_imp_woyt&themeRefresh=1
 
