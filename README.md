@@ -4,8 +4,8 @@ An embedded software implementation of a Turing Machine Module for a Eurorack sy
 [Here is an example of an all-hardware based Turing Machine module made by Music Thing Modular](https://www.thonk.co.uk/shop/turingmkii/)
 
 This started out as an adaptation of the LightRider sketch in Jeremy Blum's "Exploring Arduino"
-and then I thought to myself, "I could make musical sequence with this.."
-It turns out somebody alread has. What I've built here is know by modular synthesizer enthusiasts as a Turing Machine Module.
+and then I thought to myself, "I could make a musical sequencer with this.."
+It turns out somebody alread has. What I've built here is know by modular synthesists as a Turing Machine Module.
 A better explanation of what they do and how they work can be found here: 
 https://www.thonk.co.uk/shop/turingmkii/
 
