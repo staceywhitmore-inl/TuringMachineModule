@@ -12,9 +12,9 @@ https://www.thonk.co.uk/shop/turingmkii/
 [![a video explaing how they work](https://github.com/staceywhitmore-inl/TuringMachineModule/blob/master/media/TuringMachineExplainedVideo.PNG)](https://www.youtube.com/watch?v=va2XAdFtmeU)
 
 I thought to take this rite of passage myself and I've modified the aforementioned LightRider LED sketch to take an external clock signal (for speed control)
-and to produce a voltage via an MCP4921 DAC by mapping current 8-bit value in shift registers. 
-to 12-bit value passed to DAC and interpolated to millivolt increments.
-This volts-per-octave signal can then be fed to a Voltage controlled  oscillator to generate notes.
+and to produce a voltage via an MCP4921 DAC by mapping the 8-bit value in the shift registers 
+to a 12-bit value passed to DAC and interpolated to millivolt increments.
+This volts-per-octave signal can then be fed to a voltage controlled oscillator (VCO) to generate notes.
 Of course, they are random and not musical (unless ran through a quantizer to assign them to the closest note in a given musical scale. [This will be a separate project])
 
 8v / 256 = 0.03125 0r 0.033 or 33 milliVolts
